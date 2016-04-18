@@ -1,3 +1,5 @@
+'use strict';
+
 const React = require('react-native');
 
 const  {
@@ -34,13 +36,13 @@ class MenuItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
         flexDirection: 'row',
-        height: 50,
+        height: 60,
         alignItems: 'center',
         paddingLeft: 20
   },
   title: {
     flex: 1,
-    fontSize: 17,
+    fontSize: 15,
     color: BarcampColors.darkText,
   },
   selectedTitle: {

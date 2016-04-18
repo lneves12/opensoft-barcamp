@@ -3,7 +3,7 @@ import React, {
   Component,
 } from 'react-native';
 
-const BarcampApp = require('./src/barcamp-app');
+const BarcampApp = require('./src/BarcampApp');
 
 class barcamp extends Component {
   render() {

@@ -30,18 +30,19 @@ const styles = StyleSheet.create({
     marginRight: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 40,
-    height: 20,
-    borderRadius: 10,
-    borderWidth: 1,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    borderWidth: 2,
     borderColor: BarcampColors.darkText,
   },
   selectedContainer: {
     borderColor: BarcampColors.selectedColor
   },
   title: {
-    margin: 5,
-    fontSize: 11,
+    margin: 2,
+    fontSize: 12,
+    fontWeight: 'bold',
     color: BarcampColors.darkText,
   },
   selectedTitle: {

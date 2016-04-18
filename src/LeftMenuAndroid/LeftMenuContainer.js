@@ -1,3 +1,5 @@
+'use strict';
+
 const React = require('react-native');
 
 const  {
@@ -34,9 +36,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: BarcampColors.backgroundLighColor
-    },
-    entry: {
-        height: 50
     }
 });
 
