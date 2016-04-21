@@ -1,27 +1,23 @@
-const React = require('react-native');
+const React = require('react');
 
 const  {
     View,
     Text,
     ToolbarAndroid,
     StyleSheet
-} = React;
+} = require('react-native');
 
 const leftMenuApi = require('./../LeftMenuAndroid/leftMenuApi');
 const BarcampColors = require('./BarcampColors');
 
 class BarcampHeader extends React.Component {
-    
-    constructor(){
-        super();
-        this.leftMenuApi = leftMenuApi;
-    }
+   
     
     render() {
         let leftItem = {
             title: 'Menu',
             icon: require('./img/hamburger.png'),
-            onPress: this.leftMenuApi.openDrawer,
+            onPress: leftMenuApi.openDrawer,
         };
        
         let selectedTitleStyle = this.props.selected && styles.selectedTitle;

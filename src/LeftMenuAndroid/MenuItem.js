@@ -1,13 +1,13 @@
 'use strict';
 
-const React = require('react-native');
+const React = require('react');
 
 const  {
     View,
     Text,
     TouchableNativeFeedback,
     StyleSheet
-} = React;
+} = require('react-native');
 
 const YearIcon = require('./../common/YearIcon');
 const BarcampColors = require('./../common/BarcampColors');

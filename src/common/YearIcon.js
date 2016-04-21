@@ -1,10 +1,10 @@
-const React = require('react-native');
+const React = require('react');
 
 const  {
     View,
     Text,
     StyleSheet
-} = React;
+} = require('react-native');
 
 const BarcampColors = require('./BarcampColors');
 

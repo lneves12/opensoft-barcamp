@@ -1,13 +1,13 @@
 'use strict';
 
-const React = require('react-native');
+const React = require('react');
 
 const  {
     View,
     Text,
     StyleSheet,
     Image
-} = React;
+} = require('react-native');
 
 class LeftMenuTop extends React.Component {
     
