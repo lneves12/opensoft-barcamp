@@ -12,13 +12,17 @@ const  {
 const YearIcon = require('./../common/YearIcon');
 const BarcampColors = require('./../common/BarcampColors');
 
-class MenuItem extends React.Component {
+let MenuItem = React.createClass({
     
     render() {
        let selectedTitleStyle = this.props.selected && styles.selectedTitle;
        
+       const onPressTouchable = () => {
+           this.props.onPress(this.props.id);
+       }
+       
         return(
-            <TouchableNativeFeedback>
+            <TouchableNativeFeedback onPress={(onPressTouchable.bind(this))}>
                 <View style={[styles.container]}>
                     <YearIcon year={this.props.year}
                               selected={this.props.selected}>
@@ -31,7 +35,7 @@ class MenuItem extends React.Component {
         )
     }
     
-}
+});
 
 const styles = StyleSheet.create({
   container: {

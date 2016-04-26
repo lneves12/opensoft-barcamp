@@ -9,7 +9,7 @@ const  {
     Image
 } = require('react-native');
 
-class LeftMenuTop extends React.Component {
+let LeftMenuTop = React.createClass({
     
     render() {
        
@@ -26,7 +26,7 @@ class LeftMenuTop extends React.Component {
         )
     }
     
-}
+});
 
 const styles = StyleSheet.create({
   backgroundImage: {

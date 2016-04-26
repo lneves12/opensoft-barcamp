@@ -11,23 +11,25 @@ const  {
 const LeftMenuTop = require('./LeftMenuTop');
 const LeftMenuContainer = require('./LeftMenuContainer');
 
-class LeftMenu extends React.Component {
+let LeftMenu = React.createClass({
     
     render() {
        
         return(
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <LeftMenuTop></LeftMenuTop>
+                    <LeftMenuTop />
                 </View>
                 <View style={styles.menu}>
-                    <LeftMenuContainer></LeftMenuContainer>
+                    <LeftMenuContainer
+                        selectedBarcamp={this.props.selectedBarcamp}
+                        onMenuItemPress={this.props.onMenuItemPress} />
                 </View>
             </View>
         )
     }
     
-}
+});
 
 const styles = StyleSheet.create({
   container: {

@@ -12,25 +12,36 @@ const BarcampColors = require('./../common/BarcampColors');
 
 const MenuItem = require('./MenuItem');
 
-class LeftMenuContainer extends React.Component {
+let LeftMenuContainer = React.createClass({
+    
+           
+    isSelected(barcampId) {
+        return this.props.selectedBarcamp.id === barcampId;
+    },
     
     render() {
        
         return(
             <View style={styles.container}>
-                <MenuItem year='2016'
-                          text='South Side of Life'
-                          selected={false}>
+                <MenuItem 
+                    id='SouthSide'
+                    year='2016'
+                    text='South Side of Life'
+                    selected={this.isSelected('SouthSide')}
+                    onPress={this.props.onMenuItemPress}>
                 </MenuItem>
-                <MenuItem year='2015'
-                          text='Freedom'
-                          selected={true}>
+                <MenuItem 
+                    id='Freedom'
+                    year='2015'
+                    text='Freedom'
+                    selected={this.isSelected('Freedom')}
+                    onPress={this.props.onMenuItemPress}>
                 </MenuItem>
             </View>
         )
     }
     
-}
+});
 
 const styles = StyleSheet.create({
     container: {

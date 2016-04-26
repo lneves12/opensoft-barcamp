@@ -8,6 +8,7 @@
   "dependencies": {
     "eslint": "^2.7.0",
     "react": "^0.14.8",
-    "react-native": "^0.25.0-rc"
+    "react-native": "^0.24.0",
+    "react-native-scrollable-tab-view": "^0.4.1"
   }
 }
