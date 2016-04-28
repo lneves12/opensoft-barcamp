@@ -18,8 +18,11 @@ const LeftMenuApi = require('./../LeftMenuAndroid/LeftMenuApi');
 const LeftMenu = require('./../LeftMenuAndroid/LeftMenu');
 const BarcampColors = require('./../common/BarcampColors');
 const BarcampHeader = require('./../common/BarcampHeader');
-const ExternalVideo = require('./../common/video/ExternalVideo');
+
+const Schedule = require('./../Schedule/Schedule');
 const Photos = require('./../Photos/Photos');
+const Credits = require('./../Credits/Credits');
+
 
 // TODO [LN] var customData = require('./customData.json');
 
@@ -59,7 +62,7 @@ var BarcampMain = React.createClass({
                 selectedBarcamp={this.state.selectedBarcamp}
                 onMenuItemPress={this.onMenuItemPress} />
         );
-        
+         
         const getBarcampFullTitle = () => {
             return `${this.state.selectedBarcamp.year} - ${this.state.selectedBarcamp.title}`;
         };
@@ -85,14 +88,17 @@ var BarcampMain = React.createClass({
                                 tabBarActiveTextColor = {BarcampColors.tabsTextActive}
                                 tabBarInactiveTextColor = {BarcampColors.tabsTextpassive}>
                                 
-                                <ExternalVideo 
-                                    videoId='128780049'
+                                <Schedule
                                     navigator={this.props.navigator}
-                                    tabLabel="Schedule" />
+                                    tabLabel='Schedule' />
                                 
                                 <Photos 
-                                    navigator={this.props.navigator} 
-                                    tabLabel="Photos" />
+                                    navigator={this.props.navigator}  
+                                    tabLabel='Photos' />
+                                    
+                                <Credits
+                                    navigator={this.props.navigator}  
+                                    tabLabel='Credits'/>
                             
                             </ScrollableTabView>
                         </View>  

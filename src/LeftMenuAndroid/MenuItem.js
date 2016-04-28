@@ -22,7 +22,9 @@ let MenuItem = React.createClass({
        }
        
         return(
-            <TouchableNativeFeedback onPress={(onPressTouchable.bind(this))}>
+            <TouchableNativeFeedback 
+                onPress={(onPressTouchable.bind(this))}
+                background={TouchableNativeFeedback.SelectableBackground()}>
                 <View style={[styles.container]}>
                     <YearIcon year={this.props.year}
                               selected={this.props.selected}>

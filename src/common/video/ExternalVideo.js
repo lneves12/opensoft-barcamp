@@ -10,7 +10,9 @@ const  {
     ProgressBarAndroid
 } = require('react-native');
 
-var ExternalVideo = React.createClass({
+const FullVideo = require('./FullVideo');
+
+const ExternalVideo = React.createClass({
 
     getInitialState() {
         return {};
@@ -35,7 +37,7 @@ var ExternalVideo = React.createClass({
     },   
     
     onVideoPreviewPress() {
-        this.props.navigator.push({name: 'FullVideo', videoId: this.props.videoId});
+        this.props.navigator.push({component: FullVideo, videoId: this.props.videoId});
     },
 
     render() {

@@ -40,16 +40,17 @@ var BarcampApp = React.createClass({
   },
 
   renderScene: function(route, navigator){
-    var Component = ROUTES[route.name];
+    // let Component = ROUTES[route.name];
+    let Component = route.component;
     return <Component route={route} navigator={navigator} />;
   },
-
+ 
   render : function(){
     return(
         <Navigator 
             ref="navigator"
             style={styles.container}
-            initialRoute={{name: 'BarcampMain'}}
+            initialRoute={{component: BarcampMain}}
             renderScene={this.renderScene}
             configureScene={(route) => { return this.props.sceneTransition }}/>
     );
