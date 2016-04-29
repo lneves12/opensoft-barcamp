@@ -19,7 +19,20 @@ const ExternalVideo = React.createClass({
     },
 
     componentWillMount() {
-        fetch(`http://www.vimeo.com/api/v2/video/${this.props.videoId}.json`, {
+        this.fetchPreviewFromRemote(this.props.videoId);
+    },  
+    
+    componentWillReceiveProps(nextProps) {
+        if(this.props.videoId !== nextProps.videoId) {
+            this.setState({
+                videoPreviewImageUrl: null
+            }) 
+            this.fetchPreviewFromRemote(nextProps.videoId);
+        }      
+    },
+    
+    fetchPreviewFromRemote(videoId) {
+        fetch(`http://www.vimeo.com/api/v2/video/${videoId}.json`, {
             method: 'get'
         }).then((response) => {
             return response.json();
@@ -30,7 +43,7 @@ const ExternalVideo = React.createClass({
         }).catch((err) => {
             console.log('why!! -' + err)
         });
-    },  
+    },
  
     hasEnoughData() {
       return this.state.videoPreviewImageUrl;  
@@ -54,6 +67,7 @@ const ExternalVideo = React.createClass({
                                     <Image
                                         style={styles.playIcon}
                                         source={require('./img/playIcon.png')}/>
+                                    {this.props.children}  
                             </Image> 
                     </TouchableOpacity> 
                 )
@@ -83,12 +97,13 @@ const styles = StyleSheet.create({
   },
   previewImage: {
       flex:1,
+      paddingTop: 26,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
   },
   playIcon: {
-      height: 100,
-      width: 100,
+      height: 60,
+      width: 60,
       opacity: 0.5
   }
 }); 

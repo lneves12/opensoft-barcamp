@@ -29,7 +29,7 @@ class BarcampHeader extends React.Component {
                     onIconClicked={leftItem && leftItem.onPress}
                     title={this.props.title}
                     titleColor={BarcampColors.lightText}
-                    style={styles.toolbar}>
+                    style={[styles.toolbar, {backgroundColor: this.props.backgroundColor}]} >
                         {this.props.children}
                 </ToolbarAndroid>
             </View>

@@ -78,7 +78,7 @@ const Photos = React.createClass({
         
        let renderAllImages = () => {
            if(!this.state.images.length){
-               return <Text style={{marginLeft: 20}}> No photos available yet... </Text>
+               return <Text style={{paddingLeft: 15}}> No photos available yet... </Text>
            }
            
            let imagesComponentsByRow = [];

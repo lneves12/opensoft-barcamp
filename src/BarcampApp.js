@@ -9,13 +9,6 @@ const  {
 
 
 const BarcampMain = require('./BarcampMain/BarcampMain');
-const FullVideo = require('./common/video/FullVideo');
-
-
-var ROUTES = {
-  BarcampMain,
-  FullVideo
-};
 
 var BarcampApp = React.createClass({
 
@@ -40,7 +33,6 @@ var BarcampApp = React.createClass({
   },
 
   renderScene: function(route, navigator){
-    // let Component = ROUTES[route.name];
     let Component = route.component;
     return <Component route={route} navigator={navigator} />;
   },

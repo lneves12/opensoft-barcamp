@@ -10,8 +10,13 @@ class BarcampTitle extends React.Component {
    
     
     render() {
+        
+        var color = this.props.color === 'light' ? '#97BDC9' : '#1b80a0';
+        var fontSize = this.props.size === 'xl' ? 21 : 14;
+        
+        
         return(
-            <Text style={styles.title}>
+            <Text style={[styles.title, {color}, {fontSize}]}>
                 {this.props.text}
             </Text>
         )
@@ -21,10 +26,9 @@ class BarcampTitle extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-      color: '#1b80a0',
-      fontSize: 14,
+      fontSize: 22,
       fontWeight: 'bold',
-      marginLeft: 25,
+      marginLeft: 15,
       marginTop: 20,
       marginBottom: 10
   },

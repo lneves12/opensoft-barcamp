@@ -30,12 +30,33 @@ const DATA = {
     SouthSide : {
         id: 'SouthSide',
         year: '2016',
-        title: 'South Side of Life'
+        title: 'South Side of Life',
+        coverPhoto: require('./img/ponte_Fotor.jpg'),
+        backgroundColor: BarcampColors.backgroundDarkColor1
     },
     Freedom : { 
         id: 'Freedom',
         year: '2015',
         title: 'Freedom',
+        coverPhoto: require('./img/25.png'),
+        backgroundColor: BarcampColors.backgroundDarkColor2,
+        schedules: [
+            {
+              title: 'Resumo Barcamp - 2013',
+              desc: 'O Opensoft Barcamp aconteceu no dia 25 de Abril. Durante a tarde deste dia juntámos cerca de 40 pessoas num evento de partilha de ideias e de inspiração.',
+              videoId: '128780049'
+            },
+            {
+              title: 'Lies and Stats - 10min',
+              desc: 'Lies, damned lies, and statistics\nExistem mentiras, existem mentiras odiosas e existem estatísticas...',
+              videoId: '130081631'
+            },
+            {
+              title: '10 minutes of Hapiness - 10 min',
+              desc: 'Quando a Walmart decidiu criar uma framework para node.js... nasceu hapi.js!!!',
+              videoId: '130989956'
+            },
+        ],
         photos: {
             facebookAlbumId: 758082504289070
         }
@@ -44,6 +65,25 @@ const DATA = {
         id: 'Memories',
         year: '2013',
         title: 'Collective memories',
+        coverPhoto: require('./img/cakes2_Fotor.jpg'),
+        backgroundColor: BarcampColors.backgroundDarkColor3,
+        schedules: [
+            {
+              title: 'Resumo Barcamp - 2015',
+              desc: '2013 trouxe consigo a 5ª edição do Barcamp Opensoft. Este ano o tema foi a Memória Colectiva e os participantes trouxeram-nos apresentações que certamente irão perdurar na memória de todos.',
+              videoId: '78178801'
+            },
+            {
+              title: 'O Bigode do Mão de Ferro - 5min',
+              desc: 'Notas históricas sobre o bigode, como evoluiu através dos tempos? Qual o seu significado?',
+              videoId: '76961433'
+            },
+            {
+              title: 'Alho porque não - 10 min',
+              desc: 'Existem grandes defensores do consumo de alho, nesta apresentação ficamos a conhecer algumas das vantagens do seu consumo, mas também algumas advertências a ter em conta.',
+              videoId: '76882550'
+            },
+        ],
         photos: {
             facebookAlbumId: 479642382133085
         }
@@ -91,15 +131,16 @@ var BarcampMain = React.createClass({
                     renderNavigationView={() => navigationView}>
                         <BarcampHeader 
                             title={getBarcampFullTitle()}
-                        />
+                            backgroundColor={this.state.selectedBarcamp.backgroundColor} />
                         <View style={{flex: 1}}>
                             <ScrollableTabView
-                                tabBarBackgroundColor = {BarcampColors.backgroundDarkColor}
+                                tabBarBackgroundColor = {this.state.selectedBarcamp.backgroundColor}
                                 tabBarUnderlineColor = {BarcampColors.backgroundLighColor}
                                 tabBarActiveTextColor = {BarcampColors.tabsTextActive}
                                 tabBarInactiveTextColor = {BarcampColors.tabsTextpassive}>
                                 
                                 <Schedule
+                                    schedules={this.state.selectedBarcamp.schedules}
                                     navigator={this.props.navigator}
                                     tabLabel='Schedule' />
                                 

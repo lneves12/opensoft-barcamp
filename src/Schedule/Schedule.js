@@ -15,97 +15,72 @@ const BarcampColors = require('./../common/BarcampColors');
 const BarcampTitle = require('./../common/BarcampTitle')
 const ExternalVideo = require('./../common/video/ExternalVideo');
 
-class Schedule extends React.Component {
+var Schedule = React.createClass({
+    
+    componentWillReceiveProps(nextProps) {
+        if(this.props.schedules !== nextProps.schedules) {
+            this.forceUpdate()
+            this.scrollViewRef.scrollTo({y: 0});
+        }  
+    },
     
     render() {
+    
+        let renderSchedules = () => {
+            if(!this.props.schedules || this.props.schedules.length === 0) {
+                return (
+                    <Text style={{paddingLeft: 15}}> No schedule available yet... </Text>
+                )
+            }
+            return this.props.schedules.map((schedule, index) => {
+                return (
+                    <View style={styles.card} key={index} elevation={2}>
+                        <View style={styles.cardImage} >
+                            <ExternalVideo
+                                videoId={schedule.videoId}
+                                navigator={this.props.navigator}>
+                                <View style={styles.cardTitle}>
+                                    <BarcampTitle 
+                                        color='light' 
+                                        size='xl' 
+                                        text={schedule.title} />
+                                </View>
+                             </ExternalVideo>
+                        </View>
+                        <Text style={styles.cardContent}>
+                            {schedule.desc}
+                        </Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <TouchableWithoutFeedback
+                                onPress={() =>
+                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
+                                <Text style={styles.cardAction}>Share</Text>
+                            </TouchableWithoutFeedback> 
+                            <TouchableWithoutFeedback
+                                onPress={() =>
+                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
+                                <Text style={styles.cardAction}>Detail</Text>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                );
+            })
+        }
        
         return(
             <View style={styles.container}>
             
-                <ScrollView>
+                <ScrollView 
+                    ref={ref => this.scrollViewRef = ref}>
             
-                    <BarcampTitle text='Resumo' />
-                    
-                    <View style={styles.card} elevation={2}>
-                        <View style={styles.cardImage} >
-                            <ExternalVideo
-                                videoId='128780049'
-                                navigator={this.props.navigator} />
-                        </View>
-                        <Text style={styles.cardContent}>
-                            O Opensoft Barcamp aconteceu no dia 25 de Abril. Durante a tarde deste dia juntámos cerca de 40 pessoas num evento de partilha de ideias e de inspiração.
-                        </Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Share</Text>
-                            </TouchableWithoutFeedback> 
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Detail</Text>
-                            </TouchableWithoutFeedback>
-                        </View>
-                    </View>
-                    
-                    <BarcampTitle text='Lies and Stats - 10min' />
-                    
-                    <View style={styles.card} elevation={2}>
-                        <View style={styles.cardImage} >
-                            <ExternalVideo
-                                videoId='130081631'
-                                navigator={this.props.navigator} />
-                        </View>
-                        <Text style={styles.cardContent}>
-                            "Lies, damned lies, and statistics"{"\n"}
-                            Existem mentiras, existem mentiras odiosas e existem estatísticas...
-                        </Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Share</Text>
-                            </TouchableWithoutFeedback> 
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Detail</Text>
-                            </TouchableWithoutFeedback>
-                        </View>
-                    </View>
-                    
-                    <BarcampTitle text='10 minutes of Hapiness - 10min' />
-                    
-                    <View style={styles.card} elevation={2}>
-                        <View style={styles.cardImage} >
-                            <ExternalVideo
-                                videoId='130989956'
-                                navigator={this.props.navigator} />
-                        </View>
-                        <Text style={styles.cardContent}>
-                            Quando a Walmart decidiu criar uma framework para node.js... nasceu hapi.js!!!
-                        </Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Share</Text>
-                            </TouchableWithoutFeedback> 
-                            <TouchableWithoutFeedback
-                                onPress={() =>
-                                ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Detail</Text>
-                            </TouchableWithoutFeedback>
-                        </View>
-                    </View>
+                    {renderSchedules()}
                 
                 </ScrollView>
             </View>
         )
     }
     
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -113,11 +88,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#eeeeee'
   },
   card: {
-    marginLeft: 25,
-    marginRight: 25,
-    marginBottom: 10,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 8,
+    marginTop: 8,
     backgroundColor: '#ffffff',
-    borderRadius: 5,
+    borderRadius: 2,
     borderColor: '#ffffff',
     borderWidth: 1,
     shadowColor: 'rgba(0, 0, 0, 0.22)',
@@ -130,6 +106,11 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     height: 150
+  },
+  cardTitle: {
+    position: 'absolute',
+    left:     0,
+    bottom:    0
   },
   cardContent: {
     margin: 15,

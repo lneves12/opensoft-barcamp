@@ -15,7 +15,7 @@ let LeftMenuTop = React.createClass({
        
         return(
             <Image style={styles.backgroundImage} 
-                   source={require('./img/ponte_Fotor.jpg')}>
+                   source={this.props.selectedBarcamp.coverPhoto}>
                     <Image style={styles.profileImage} 
                            source={require('./img/profile.jpg')}>
                     </Image>
@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'flex-end',
+    width: undefined,
+    height: undefined
   },
   profileImage: {
       width: 80,

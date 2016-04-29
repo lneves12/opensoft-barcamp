@@ -12,7 +12,7 @@ const BarcampColors = require('./../common/BarcampColors');
 
 const MenuItem = require('./MenuItem');
 
-let LeftMenuContainer = React.createClass({
+let LeftMenuItems = React.createClass({
     
            
     isSelected(barcampId) {
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = LeftMenuContainer;
+module.exports = LeftMenuItems;
     
  

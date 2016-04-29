@@ -9,7 +9,7 @@ const  {
 } = require('react-native');
 
 const LeftMenuTop = require('./LeftMenuTop');
-const LeftMenuContainer = require('./LeftMenuContainer');
+const LeftMenuItems = require('./LeftMenuItems');
 
 let LeftMenu = React.createClass({
     
@@ -18,10 +18,11 @@ let LeftMenu = React.createClass({
         return(
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <LeftMenuTop />
+                    <LeftMenuTop 
+                        selectedBarcamp={this.props.selectedBarcamp}/>
                 </View>
                 <View style={styles.menu}>
-                    <LeftMenuContainer
+                    <LeftMenuItems
                         selectedBarcamp={this.props.selectedBarcamp}
                         onMenuItemPress={this.props.onMenuItemPress} />
                 </View>
