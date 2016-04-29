@@ -26,16 +26,27 @@ const Credits = require('./../Credits/Credits');
 
 // TODO [LN] var customData = require('./customData.json');
 
-const DATA ={
-    Freedom : { 
-        id: 'Freedom',
-        year: '2015',
-        title: 'Freedom'
-    },
+const DATA = {
     SouthSide : {
         id: 'SouthSide',
         year: '2016',
         title: 'South Side of Life'
+    },
+    Freedom : { 
+        id: 'Freedom',
+        year: '2015',
+        title: 'Freedom',
+        photos: {
+            facebookAlbumId: 758082504289070
+        }
+    },
+    Memories : {
+        id: 'Memories',
+        year: '2013',
+        title: 'Collective memories',
+        photos: {
+            facebookAlbumId: 479642382133085
+        }
     }
 };
 
@@ -93,6 +104,7 @@ var BarcampMain = React.createClass({
                                     tabLabel='Schedule' />
                                 
                                 <Photos 
+                                    photos={this.state.selectedBarcamp.photos}
                                     navigator={this.props.navigator}  
                                     tabLabel='Photos' />
                                     

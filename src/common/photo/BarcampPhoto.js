@@ -26,8 +26,9 @@ const BarcampPhoto = React.createClass({
                 onPress={this.onImagePress}>
                 <Image
                     style={styles.container}
-                    source={{ uri: this.props.imageUri }}
-                />
+                    source={{ uri: this.props.imageUri }}>
+                    {this.props.children}    
+                </Image>
             </TouchableOpacity>
         )
     },

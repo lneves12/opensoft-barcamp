@@ -5,10 +5,13 @@ const React = require('react');
 const  {
     View,
     Text,
+    Image,
     StyleSheet
 } = require('react-native');
 
 const BarcampColors = require('./../common/BarcampColors');
+const BarcampPhoto = require('./../common/photo/BarcampPhoto');
+const BarcampTitle = require('./../common/BarcampTitle');
 
 class Credits extends React.Component {
     
@@ -16,15 +19,31 @@ class Credits extends React.Component {
        
         return(
             <View style={styles.container}>
-                <Text>
-                    Listing the bosses here!!!
-                </Text>
-                <Text>
-                    Organisers!!
-                </Text>
-                <Text>
-                    The Elite Speakers!!
-                </Text>
+               
+                
+                 <BarcampTitle text='The organisers...' />
+            
+                <View style={styles.creditImage}>
+                    
+                    <BarcampPhoto 
+                        imageUri={`http://graph.facebook.com/758208717609782/picture`} 
+                        navigator={this.props.navigator}>
+                            <Image style={{flex: 1, resizeMode: 'contain', opacity: 0.6, margin: 20}} source={{uri: 'http://img06.deviantart.net/dd6a/i/2013/287/b/0/holy_grail_png_by_erdmute-d1nodd1.png'}} />
+                     </BarcampPhoto>
+                </View>
+                
+                <View style={{flex: 1, padding: 20}}>
+                    <Text>
+                        Pedro Carvalho
+                    </Text>
+                    <Text>
+                        Mariana Sousa
+                    </Text>
+                    <Text >
+                        Vitor Oliveira
+                    </Text>
+                </View>
+                
             </View>
         )
     }
@@ -34,11 +53,13 @@ class Credits extends React.Component {
 const styles = StyleSheet.create({
   container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: '#eeeeee'
   },
-  text: {
-      fontSize: 20
+  creditImage: {
+    flex: 2, 
+    marginLeft: 20, 
+    marginRight: 20,
+    opacity: 0.8
   }
 });
 

@@ -12,17 +12,11 @@ const  {
 } = require('react-native');
 
 const BarcampColors = require('./../common/BarcampColors');
-const BarcampPhoto = require('./../common/photo/BarcampPhoto')
+const BarcampPhoto = require('./../common/photo/BarcampPhoto');
+const BarcampTitle = require('./../common/BarcampTitle');
 
-const images = [
-    {uri: 'https://scontent-mad1-1.xx.fbcdn.net/t31.0-8/885712_765215933575727_85541160619379851_o.jpg'},
-    {uri: 'https://scontent-mad1-1.xx.fbcdn.net/hphotos-xap1/t31.0-8/885712_765215860242401_193508341841468629_o.jpg'}
-]
 
 const PUBLIC_ACCESS_TOKEN = 'CAAYAbbWS0C4BAKoE1MW0NZAEdh4h9cu5PzQs5iienIAsGZBUDlnEalhgmizvqbEmn5aqZCwjCUeI2jhdiqHnJg7Ww1X9bDZAZBtWIUAGuixOEhTo8WBhuBlbZBHyysz48jqe7eGKtw0bJZAFZBlU5eJ6eawhU42CZB09MEVUZBYm5EAgZC9mSMNwlt7HIqlQXB8qteTfs7sa5CDkwZDZD';
-const album_id = 758082504289070;
-
-const fetch_first_images = `https://graph.facebook.com/v2.6/${album_id}/photos?limit=45&access_token=${PUBLIC_ACCESS_TOKEN}`;
 
 const Photos = React.createClass({
     
@@ -31,17 +25,33 @@ const Photos = React.createClass({
     },
     
     componentDidMount() {
-        fetch(fetch_first_images, {
-            method: 'get'
-        }).then((response) => {
-            return response.json();
-        }).then((jsonResponse) => {
-            this.setState({
-                images: jsonResponse.data
-            }) 
-        }).catch((err) => {
-            console.log('why!! -' + err)
-        });
+        this.fetchPhotosFromFacebookAlbum(this.props.photos.facebookAlbumId);
+    },
+    
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.photos) {
+            this.setState({images: []});
+            this.scrollViewRef.scrollTo({y: 0});
+        } else {
+            if(this.props.photos !== nextProps.photos) {
+                this.fetchPhotosFromFacebookAlbum(nextProps.photos.facebookAlbumId);
+                this.scrollViewRef.scrollTo({y: 0});
+            }      
+        }
+    },
+    
+    fetchPhotosFromFacebookAlbum(albumId) {
+            fetch(`https://graph.facebook.com/v2.6/${albumId}/photos?limit=30&access_token=${PUBLIC_ACCESS_TOKEN}`, {
+                method: 'get'
+            }).then((response) => {
+                return response.json();
+            }).then((jsonResponse) => {
+                this.setState({
+                    images: jsonResponse.data
+                }) 
+            }).catch((err) => {
+                console.log('why!! -' + err)
+            });
     },
     
     hasEnoughData(){
@@ -67,6 +77,10 @@ const Photos = React.createClass({
        }
         
        let renderAllImages = () => {
+           if(!this.state.images.length){
+               return <Text style={{marginLeft: 20}}> No photos available yet... </Text>
+           }
+           
            let imagesComponentsByRow = [];
            for(let i = 0; i < this.state.images.length; i += 3){
                 imagesComponentsByRow.push(renderRow(i));
@@ -77,11 +91,10 @@ const Photos = React.createClass({
        if(this.hasEnoughData()){
             return(
                 <View style={styles.container}>
-                    <ScrollView>
+                    <ScrollView
+                        ref={ref => this.scrollViewRef = ref}>
                     
-                        <Text style={styles.title}>
-                            Facebook
-                        </Text>
+                        <BarcampTitle text='Facebook Albuns' />
                         
                         {renderAllImages()}
                         
@@ -100,21 +113,13 @@ const Photos = React.createClass({
 const styles = StyleSheet.create({
   container: {
         flex: 1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#eeeeee'
   },
   rowContainer: {
       flex: 1,
       flexDirection: 'row',
       marginLeft: 0.5,
       marginRight: 0.5
-  },
-  title: {
-      color: '#1b80a0',
-      fontSize: 14,
-      fontWeight: 'bold',
-      marginLeft: 25,
-      marginTop: 20,
-      marginBottom: 10
   }
 });
 

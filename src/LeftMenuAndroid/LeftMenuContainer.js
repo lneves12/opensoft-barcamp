@@ -21,6 +21,7 @@ let LeftMenuContainer = React.createClass({
     
     render() {
        
+       //[TODO] - This MenuItems should be dynamic
         return(
             <View style={styles.container}>
                 <MenuItem 
@@ -35,6 +36,13 @@ let LeftMenuContainer = React.createClass({
                     year='2015'
                     text='Freedom'
                     selected={this.isSelected('Freedom')}
+                    onPress={this.props.onMenuItemPress}>
+                </MenuItem>
+                <MenuItem 
+                    id='Memories'
+                    year='2013'
+                    text='Collective memories'
+                    selected={this.isSelected('Memories')}
                     onPress={this.props.onMenuItemPress}>
                 </MenuItem>
             </View>
