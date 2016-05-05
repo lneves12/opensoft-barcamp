@@ -8,7 +8,7 @@ const  {
 
 class BarcampCardView extends React.Component {
    
-    //TODO: TO BE DONE: refacor code from schedule.js
+    //TODO: TO BE DONE: refactor code from schedule.js
     
     
     render() {

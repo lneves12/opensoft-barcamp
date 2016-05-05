@@ -23,7 +23,7 @@ class BarcampHeader extends React.Component {
         let selectedTitleStyle = this.props.selected && styles.selectedTitle;
        
         return(
-            <View style={styles.toolbarContainer}>
+            <View style={[styles.toolbarContainer, {backgroundColor: this.props.backgroundColor}]}>
                 <ToolbarAndroid
                     navIcon={leftItem && leftItem.icon}
                     onIconClicked={leftItem && leftItem.onPress}
@@ -43,8 +43,7 @@ var HEADER_HEIGHT = 56 + STATUS_BAR_HEIGHT;
 
 const styles = StyleSheet.create({
   toolbarContainer: {
-    paddingTop: STATUS_BAR_HEIGHT,
-    backgroundColor: BarcampColors.backgroundDarkColor
+    paddingTop: STATUS_BAR_HEIGHT
   },
   toolbar: {
     height: HEADER_HEIGHT - STATUS_BAR_HEIGHT,

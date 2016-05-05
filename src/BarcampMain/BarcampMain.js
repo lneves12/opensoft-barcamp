@@ -23,10 +23,7 @@ const Schedule = require('./../Schedule/Schedule');
 const Photos = require('./../Photos/Photos');
 const Credits = require('./../Credits/Credits');
 
-
-// TODO [LN] var customData = require('./customData.json');
-
-const DATA = {
+const barcampStaticData = {
     SouthSide : {
         id: 'SouthSide',
         year: '2016',
@@ -42,7 +39,7 @@ const DATA = {
         backgroundColor: BarcampColors.backgroundDarkColor2,
         schedules: [
             {
-              title: 'Resumo Barcamp - 2013',
+              title: 'Resumo Barcamp - 2015',
               desc: 'O Opensoft Barcamp aconteceu no dia 25 de Abril. Durante a tarde deste dia juntámos cerca de 40 pessoas num evento de partilha de ideias e de inspiração.',
               videoId: '128780049'
             },
@@ -56,6 +53,11 @@ const DATA = {
               desc: 'Quando a Walmart decidiu criar uma framework para node.js... nasceu hapi.js!!!',
               videoId: '130989956'
             },
+            {
+                title: 'Plane Spotting',
+                desc: 'Nesta apresentação tivemos uma introdução rápida sobre um hobby que move verdadeiros geeks de aviação. As fotos são incríveis e os factos também.',
+                videoId: '128794657'
+            }
         ],
         photos: {
             facebookAlbumId: 758082504289070
@@ -69,7 +71,7 @@ const DATA = {
         backgroundColor: BarcampColors.backgroundDarkColor3,
         schedules: [
             {
-              title: 'Resumo Barcamp - 2015',
+              title: 'Resumo Barcamp - 2013',
               desc: '2013 trouxe consigo a 5ª edição do Barcamp Opensoft. Este ano o tema foi a Memória Colectiva e os participantes trouxeram-nos apresentações que certamente irão perdurar na memória de todos.',
               videoId: '78178801'
             },
@@ -93,11 +95,11 @@ const DATA = {
 var BarcampMain = React.createClass({
     
     getInitialState(){
-        return { selectedBarcamp: DATA['Freedom'] };
+        return { selectedBarcamp: barcampStaticData['Freedom'] };
     },
 
     onMenuItemPress(menuIdPressed) {
-        this.setState( { selectedBarcamp: DATA[menuIdPressed] });
+        this.setState( { selectedBarcamp: barcampStaticData[menuIdPressed] });
         LeftMenuApi.closeDrawer();
     },
 

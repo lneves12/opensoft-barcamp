@@ -31,6 +31,10 @@ const Photos = React.createClass({
         this.fetchPhotosFromFacebookAlbum(this.props.photos.facebookAlbumId);
     },
     
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.imagesByRow !== nextState.imagesByRow;
+    },
+    
     componentWillReceiveProps(nextProps) {
         if(!nextProps.photos) {
             this.setState({imagesByRow: []});

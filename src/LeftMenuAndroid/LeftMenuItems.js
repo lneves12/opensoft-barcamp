@@ -21,7 +21,7 @@ let LeftMenuItems = React.createClass({
     
     render() {
        
-       //[TODO] - This MenuItems should be dynamic
+       //TODO [LN] - This MenuItems should be dynamic
         return(
             <View style={styles.container}>
                 <MenuItem 

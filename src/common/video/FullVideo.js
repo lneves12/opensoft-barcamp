@@ -15,7 +15,7 @@ let {height, width} = Dimensions.get('window');
 
 var FullVideo = React.createClass({
     
-    //Repor depois disto: https://github.com/facebook/react-native/issues/7226 
+    // https://github.com/facebook/react-native/issues/7226 
     // source={{uri: `https://player.vimeo.com/video/${this.props.route.videoId}?title=0&byline=0&badge=0&portrait=0&autoplay=1`}}/>
     
     render() {

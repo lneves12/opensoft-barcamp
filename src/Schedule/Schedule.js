@@ -54,12 +54,16 @@ var Schedule = React.createClass({
                             <TouchableWithoutFeedback
                                 onPress={() =>
                                 ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Share</Text>
+                                <View>
+                                    <Text style={styles.cardAction}>Share</Text>
+                                </View>
                             </TouchableWithoutFeedback> 
                             <TouchableWithoutFeedback
                                 onPress={() =>
                                 ToastAndroid.show('To be done! :D', ToastAndroid.SHORT)}>
-                                <Text style={styles.cardAction}>Detail</Text>
+                                <View>                                
+                                    <Text style={styles.cardAction}>Detail</Text>
+                                </View>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
