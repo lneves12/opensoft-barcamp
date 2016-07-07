@@ -16,35 +16,35 @@ const BarcampColors = require('./../common/BarcampColors');
 const BarcampTitle = require('./../common/BarcampTitle');
 const PhotosRow = require('./PhotosRow');
 
-const PUBLIC_ACCESS_TOKEN = 'CAAYAbbWS0C4BAKoE1MW0NZAEdh4h9cu5PzQs5iienIAsGZBUDlnEalhgmizvqbEmn5aqZCwjCUeI2jhdiqHnJg7Ww1X9bDZAZBtWIUAGuixOEhTo8WBhuBlbZBHyysz48jqe7eGKtw0bJZAFZBlU5eJ6eawhU42CZB09MEVUZBYm5EAgZC9mSMNwlt7HIqlQXB8qteTfs7sa5CDkwZDZD';
+const PUBLIC_ACCESS_TOKEN = 'EAAYAbbWS0C4BANHoOaeMJO6s0ze7RVGNSdSZB3gW8wsBykMUPfLjlkqA9AUgD2q4AaOh1mPZAFOwcupsNWacvZCOhtxkbdAUBsnw9kkuTuOc7n2eVMJJocdUCBkQLZAYTMlz0DefoYZBqxm8DBjoF2Jc5lec8164ZD';
 
  var DATASOURCE_MANAGER;
 
 const Photos = React.createClass({
-    
+
     getInitialState(){
       DATASOURCE_MANAGER = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      return {};  
+      return {};
     },
-    
+
     componentDidMount() {
         this.fetchPhotosFromFacebookAlbum(this.props.photos.facebookAlbumId);
     },
-    
+
     shouldComponentUpdate(nextProps, nextState) {
         return this.state.imagesByRow !== nextState.imagesByRow;
     },
-    
+
     componentWillReceiveProps(nextProps) {
         if(!nextProps.photos) {
             this.setState({imagesByRow: []});
         } else {
             if(this.props.photos !== nextProps.photos) {
                 this.fetchPhotosFromFacebookAlbum(nextProps.photos.facebookAlbumId);
-            }      
+            }
         }
     },
-    
+
     fetchPhotosFromFacebookAlbum(albumId) {
             fetch(`https://graph.facebook.com/v2.6/${albumId}/photos?limit=400&access_token=${PUBLIC_ACCESS_TOKEN}`, {
                 method: 'get'
@@ -62,20 +62,20 @@ const Photos = React.createClass({
                 }
                 this.setState({
                     imagesByRow : DATASOURCE_MANAGER.cloneWithRows(imagesByRow)
-                }) 
+                })
             }).catch((err) => {
                 console.log('why!! -' + err)
             });
     },
-    
+
     hasFetchedData(){
-      return this.state.imagesByRow;  
+      return this.state.imagesByRow;
     },
-    
+
     render() {
-        
+
        if(this.hasFetchedData()){
-           
+
            if(this.state.imagesByRow.length === 0){
                 return(
                     <View style={styles.container}>
@@ -95,14 +95,14 @@ const Photos = React.createClass({
                     />
                 </View>
             )
-            
+
         } else {
             return (
                 <ProgressBarAndroid />
-            ) 
-        }   
+            )
+        }
     }
-    
+
 })
 
 const styles = StyleSheet.create({
@@ -113,5 +113,3 @@ const styles = StyleSheet.create({
 });
 
 module.exports = Photos;
-    
- 
